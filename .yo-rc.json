@@ -1,0 +1,17 @@
+{
+  "generator-ui5-ts-app": {
+    "namespace": "com.erp.myapp",
+    "framework": "OpenUI5",
+    "frameworkVersion": "1.134.0",
+    "author": "Gabriel Borges",
+    "initrepo": false,
+    "tstypes": "@openui5/types",
+    "tstypesVersion": "1.134.0",
+    "appId": "com.erp.myapp",
+    "appURI": "com/myorg/myapp",
+    "cdnDomain": "sdk.openui5.org",
+    "defaultTheme": "sap_horizon",
+    "gte11150": true,
+    "setupCompleted": true
+  }
+}

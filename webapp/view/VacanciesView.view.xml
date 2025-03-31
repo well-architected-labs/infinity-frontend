@@ -1,0 +1,180 @@
+<mvc:View
+	height="100%"
+    controllerName="com.erp.myapp.controller.VacanciesView"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt"
+	xmlns="sap.m">
+	<Page
+		id="idPage"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		title="{/title}"
+		class= "sapUiResponsivePadding--header" >
+		<headerContent>
+			<Button
+				text="Editar vaga"
+				press="edit"
+				icon="sap-icon://edit-outside"
+			/>	
+			<Button
+				text="Criar nova vaga"
+				press="create"
+				type="Success"
+				icon="sap-icon://edit-outside"
+			/>
+		</headerContent>
+		<content>
+			<ObjectHeader
+				title="{Name}"
+				backgroundDesign="Solid"
+				number="{
+					parts:[{path:'Price'},{path:'CurrencyCode'}],
+					type: 'sap.ui.model.type.Currency',
+					formatOptions: {showMeasure: false}
+				}"
+				numberUnit="12.000" >
+				<attributes>
+					<ObjectAttribute title="Id" text="{/id}" />
+					<ObjectAttribute title="Titulo" text="{/title}" />
+					<ObjectAttribute title="Ocupação" text="{/ocupation/name}" />
+					<ObjectAttribute title="Status" text="{/status/description}" />
+				</attributes>
+				<statuses>
+					<ObjectStatus title="Da inicio" text="{
+						path: '/dateInit',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss'
+							},
+							pattern: 'dd/MM/yyyy'
+						}
+					}" state="Success" />
+					<ObjectStatus title="Data fim" text="{
+						path: '/dateEnd',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss'
+							},
+							pattern: 'dd/MM/yyyy'
+						}
+					}" state="Success" />
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar
+				width="100%"
+				expanded="{device>/isNoPhone}"
+				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						key="info"
+						width="100%"
+						text="Informações da vaga">
+						
+						<Panel width="100%" class="sapUiResponsiveMargin">
+						<headerToolbar height="60px">
+							<OverflowToolbar height="60px">
+								<Title text="Informações da vaga"/>
+								<ToolbarSpacer />
+
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<Text text="{/description}" />
+						</content>
+					</Panel>
+					</IconTabFilter>
+					<IconTabFilter
+						key="candidates"
+						text="Candidatos">
+
+					<Table 
+						id="idCandidatesTable"
+						inset="true"
+						class="sapUiContentPadding"
+						items="{candidates>/}">
+						<headerToolbar height="60px">
+							<OverflowToolbar height="60px">
+								<content>
+									<Title text="Candidatos" level="H2"/>				    
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<OverflowToolbar height="60px">
+								<Label text="Pessoas que se candidataram"/>
+							</OverflowToolbar>
+						</infoToolbar>
+						<columns>
+							<Column
+								width="12em">
+								<Text text="Id" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+								<Text text="Nome" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true">
+								<Text text="Telefone" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="End">
+								<Text text="Status da candidatura" 
+							/>
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="End">
+								<Text text="Linkeding" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="End">
+								<Text text="Ver candidato" />
+							</Column>			
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<ObjectIdentifier
+										title="{candidates>id}"
+										text="{candidates>person/firstName}"/>
+									<Text
+										text="{candidates>person/firstName} {candidates>person/lastName}" />
+									<Text
+										text="{candidates>person/phone/ddi} {candidates>person/phone/ddd}{candidates>person/phone/number}" />
+									<tnt:InfoLabel 
+											text="{candidates>status/description}"
+											icon="sap-icon://activity-individual"
+											colorScheme="6" />
+
+									<Label text="{candidates>person/bio/linkedin}" />
+
+									<Button
+									text="Ver candidato"
+									press="view"
+									icon="sap-icon://show-edit"
+									/>
+
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

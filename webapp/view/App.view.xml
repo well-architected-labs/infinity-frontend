@@ -1,0 +1,76 @@
+<mvc:View height="100%"
+	controllerName="com.erp.myapp.controller.App"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt">
+
+	<ScrollContainer vertical="false"  height="1000px">
+		<tnt:ToolHeader id="shellLikeToolHeader">
+			<Button press="onCollapseExpandPress"  icon="sap-icon://menu2" type="Transparent" tooltip="Menu">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+			
+			<Title text="INFINITY" wrapping="false" id="productName">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Title>
+			<Text text="Team" wrapping="false" id="secondTitle">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Text>
+			<ToolbarSpacer />
+
+			<tnt:ToolHeaderUtilitySeparator/>
+			<OverflowToolbarButton icon="sap-icon://log" press="logout" type="Transparent" text="" tooltip=""/>
+			<Avatar src="https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg" displaySize="XS"  tooltip="Profile">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Avatar>
+		</tnt:ToolHeader>
+
+
+	<l:FixFlex  class="fixFlexHorizontal" fixFirst="true" minFlexSize="600px"  vertical="false" >
+		<l:fixContent >
+		
+	<tnt:SideNavigation 
+		
+		id="sideNavigation"
+		visible="{session>/active}" 
+		selectedKey="walked" 
+		expanded="true" 
+		itemSelect="onItemSelect"
+	>
+  
+		<tnt:NavigationList items="{/menu}">
+		<tnt:NavigationListItem items="{path: 'items', templateShareable: false}" text="{text}" icon="{icon}" selectable="{selectable}">
+			<tnt:NavigationListItem text="{text}" href="{href}" />
+		</tnt:NavigationListItem>
+		</tnt:NavigationList>
+
+			<tnt:fixedItem>
+				<tnt:NavigationList>
+					<tnt:NavigationListItem selectable="false" href="#" target="_blank" text="Sobre a versão" icon="sap-icon://message-information" />
+				</tnt:NavigationList>
+			</tnt:fixedItem>
+
+
+</tnt:SideNavigation>
+
+		</l:fixContent>
+		<l:flexContent>
+			<App id="app" />
+		</l:flexContent>
+	</l:FixFlex>
+
+	
+	</ScrollContainer>
+
+
+</mvc:View>
+

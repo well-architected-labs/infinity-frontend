@@ -1,0 +1,246 @@
+<mvc:View
+	controllerName="com.erp.myapp.controller.Vacancies"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:tnt="sap.tnt"
+	xmlns="sap.m">
+
+
+	<Page
+		showHeader="true"
+		enableScrolling="true"
+    	title="Vagas"
+		class="sapUiContentPadding"
+		showNavButton="true"
+    	navButtonPress="onNavBack"
+		>
+		<headerContent>
+			<Button
+				text="Criar nova vaga"
+				press="create"
+				type="Success"
+				icon="sap-icon://edit-outside"
+			/>
+		</headerContent>
+		<content>
+    <f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+      <f:content>
+        <Label text="Titulo"/>
+        <Input change="search" value="{/title}"/>
+      
+      <Label text="Ocupação"/>
+      <Select change="search" selectedKey="{/ocupation/id}" id="ocupation" items="{ocupations>/}">
+        <layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </layoutData>
+          <core:Item key="{ocupations>id}" text="{ocupations>name}" />
+      </Select>
+
+
+      <Label text="Status"/>
+      <Select change="search" selectedKey="{/status/id}" id="status" items="{status>/}">
+        <layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </layoutData>
+          <core:Item key="{status>id}" text="{status>description}" />
+      </Select>
+      
+      <Label text="Skills"/>
+        <MultiComboBox
+          id="multiComboBox"
+          selectedKeys="{/skills}"
+		  change="search"
+          items="{skills>/}">
+          <core:Item key="{skills>id}" text="{skills>name}" />
+        </MultiComboBox>
+
+
+
+
+      <Label text="Data de início"/>
+      <DatePicker change="search" value="{
+        path: '/dateInit',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+            }
+        }">
+          <layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </layoutData>
+      </DatePicker>
+
+
+      <Label text="Data de término"/>
+      <DatePicker change="search" value="{
+        path: '/dateEnd',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+        }
+    }">
+          <layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </layoutData>
+      </DatePicker>
+			<Button
+				text="Procurar vagas"
+				press="filter"
+				type="Success"
+				icon="sap-icon://filter"
+			/>
+      </f:content>
+    </f:SimpleForm>
+
+
+	<Table 
+		id="idVacanciesTable"
+		inset="true"
+		class="sapUiContentPadding"
+		items="{vacancies>/}">
+		<headerToolbar height="60px">
+			<OverflowToolbar height="60px">
+				<content>
+					<Title text="Vagas" level="H2"/>				    
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar height="60px">
+				<Label text="Vagas Cadastradas"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Vaga" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Descrição" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="Ocupação" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="Status" />
+			</Column>
+						<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Data de início" />
+			</Column>
+
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Data de fim" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Skills" />
+			</Column>
+
+			<Column
+				width="8em"
+				hAlign="Init">
+				<Text text="Ver" />
+			</Column>
+			<Column
+				width="8em"
+				hAlign="Init">
+				<Text text="Editar" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						title="{vacancies>id}"
+						text="{vacancies>title}"/>
+					<Text
+						text="{vacancies>description}" />
+					<Text
+						text="{vacancies>ocupation/name}" />
+					<tnt:InfoLabel 
+							text="{vacancies>status/description}"
+							icon="sap-icon://activity-individual"
+							colorScheme="6" />
+
+					<Label text="{
+						path: 'vacancies>dateInit',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss'
+							},
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+
+					
+					<Label text="{
+						path: 'vacancies>dateEnd',
+						type: 'sap.ui.model.type.DateTime',
+						formatOptions: {
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss'
+							},
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+
+
+					<VBox
+						items="{vacancies>skills}"
+						>
+						<tnt:InfoLabel 
+							text="{vacancies>name}"
+							icon="sap-icon://home-share"
+							colorScheme="1" />
+					</VBox>
+
+					<Button
+						text="Ver"
+						press="view"
+						icon="sap-icon://show-edit"
+					/>
+
+
+					<Button
+					text="Editar"
+					press="edit"
+					icon="sap-icon://edit-outside"
+					/>
+
+
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>	
+	</content>
+	</Page>
+
+
+	
+
+</mvc:View>

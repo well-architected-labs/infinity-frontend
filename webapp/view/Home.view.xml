@@ -1,0 +1,136 @@
+<mvc:View 
+	xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:blockcolor="sap.uxap.sample.ObjectPageFormLayout.controller.blocks"
+	controllerName="com.erp.myapp.controller.Home"
+    >
+	<m:Page
+		showHeader="true"
+		enableScrolling="false"
+    title="Vagas"
+		class="sapUiContentPadding"
+		showNavButton="true"
+    navButtonPress="onNavBack"
+    >
+		<m:content>
+    <f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+      <f:content>
+        <m:Label text="Titulo"/>
+        <m:Input value="{/title}"/>
+      
+      <m:Label text="Ocupação"/>
+      <m:Select selectedKey="{/ocupation/id}" id="ocupation" items="{ocupations>/}">
+        <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+          <core:Item key="{ocupations>id}" text="{ocupations>name}" />
+      </m:Select>
+
+
+      <m:Label text="Status"/>
+      <m:Select selectedKey="{/status/id}" id="status" items="{status>/}">
+        <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+          <core:Item key="{status>id}" text="{status>description}" />
+      </m:Select>
+      
+      <m:Label text="Skills"/>
+        <m:MultiComboBox
+          id="multiComboBox"
+          selectedKeys="{/skills}"
+          items="{skills>/}">
+          <core:Item key="{skills>id}" text="{skills>name}" />
+        </m:MultiComboBox>
+
+
+
+
+      <m:Label text="Data de início"/>
+      <m:DatePicker value="{
+        path: '/dateInit',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mm:ss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+        }
+    }">
+          <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+      </m:DatePicker>
+
+
+      <m:Label text="Data de término"/>
+      <m:DatePicker value="{
+        path: '/dateEnd',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mm:ss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+        }
+    }">
+          <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+      </m:DatePicker>
+
+      </f:content>
+    </f:SimpleForm>
+
+
+		<m:Panel class="sapUiTinyMarginTop" headerText="Vagas">
+			<m:FlexBox
+        alignItems="Start"
+        justifyContent="Start"
+        wrap="Wrap"
+        >
+
+
+            <m:VBox direction="Row" wrap="Wrap" justifyContent="Start"
+						items="{vacancies>/}">
+              <m:GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{vacancies>title}"
+                subheader="{vacancies>description}" press="view">
+                <m:TileContent footer="
+                            {
+                    path: 'vacancies>dateInit',
+                    type: 'sap.ui.model.type.DateTime',
+                    formatOptions: {
+                        source: {
+                            pattern: 'yyyy-MM-ddTHH:mm:ss'
+                        },
+                        pattern: 'dd/MM/yyyy'
+                    }
+                }">
+
+                   <m:NumericContent value="1" icon="sap-icon://suitcase" withMargin="false" />
+                </m:TileContent>
+                    
+                  </m:GenericTile>
+					</m:VBox>
+
+			</m:FlexBox>
+		</m:Panel>
+
+
+					
+
+
+
+
+
+
+
+		</m:content>
+	</m:Page>
+
+			
+</mvc:View>

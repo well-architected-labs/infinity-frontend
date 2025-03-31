@@ -1,0 +1,153 @@
+<mvc:View
+  controllerName="com.erp.myapp.controller.SignUp"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core">
+
+      <VBox
+        alignItems="Center"
+        justifyContent="Center"
+        height="100%">
+
+								<f:Form id="formAccount"
+                  width="300px"
+									editable="true">
+									<f:title>
+										<core:Title text="Registrar" />
+									</f:title>
+									<f:layout>
+										<f:ColumnLayout
+											columnsM="2"
+											columnsL="3"
+											columnsXL="4"
+										/>
+									</f:layout>
+									<f:formContainers>
+
+										<f:FormContainer title="Dados de acesso">
+											<f:formElements>
+												<f:FormElement label="E-mail">
+													<f:fields>
+														<Input value="{user>/email}" />
+													</f:fields>
+												</f:FormElement>
+											<f:FormElement label="Password">
+													<f:fields>
+														<Input type="Password" value="{user>/password}" />
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+                    </f:FormContainer>
+										<f:FormContainer title="Informações pessoais">
+											<f:formElements>
+											<f:FormElement label="Pessoa jurídica">
+													<f:fields>
+																<Switch change="checkType" state="false" customTextOn="SIM" customTextOff="NÃO">
+                              <layoutData>
+                                <FlexItemData growFactor="1" />
+                              </layoutData>
+                            </Switch>
+													</f:fields>
+												</f:FormElement>
+
+
+												<f:FormElement visible="{= ${user>/person/type} === '1' }" label="Name">
+													<f:fields>
+														<Input value="{user>/person/firstName}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement visible="{= ${user>/person/type} === '1' }" label="Sobrenome">
+													<f:fields>
+														<Input value="{user>/person/lastName}" />
+													</f:fields>
+												</f:FormElement>
+
+												<f:FormElement visible="{= ${user>/person/type} === '0' }" label="Razão Social">
+													<f:fields>
+														<Input value="{/person/legalName}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement visible="{= ${user>/person/type} === '0' }" label="Nome Fantasia">
+													<f:fields>
+														<Input value="{user>/person/fantasyName}" />
+													</f:fields>
+												</f:FormElement>
+
+												<f:FormElement visible="{= ${user>/person/type} === '1' }" label="CPF">
+													<f:fields>
+														<Input value="{user>/person/taxId}"/>
+													</f:fields>
+												</f:FormElement>
+
+
+												<f:FormElement visible="{= ${user>/person/type} === '0' }" label="CNPJ">
+													<f:fields>
+														<Input value="{user>/person/taxId}" />
+													</f:fields>
+												</f:FormElement>
+
+
+												
+											</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer>
+											<f:formElements>
+                      	<f:FormElement>
+													<f:fields>
+                        	  <CheckBox text="Declaro que li e concordo com os" selected="false" partiallySelected="true">
+                            <layoutData>
+																<f:ColumnElementData cellsSmall="12" cellsLarge="3" />
+															</layoutData>
+														</CheckBox>
+                              
+                              <Link
+                              text=" Termos de Uso."
+                              target="_blank"
+				                      href="/index.html#/terms">
+
+															<layoutData>
+																<f:ColumnElementData cellsSmall="12" cellsLarge="3" />
+															</layoutData>
+														</Link>
+
+													</f:fields>
+												</f:FormElement>
+                        						<f:FormElement>
+													<f:fields>
+														<Button
+														text="Registrar-se"
+														press="signUp"
+														type="Success"/>
+														
+													</f:fields>
+												</f:FormElement>
+												
+											</f:formElements>
+										</f:FormContainer>
+
+											<f:FormContainer>
+											<f:formElements>
+
+											<f:FormElement>
+											<f:fields>
+												<Button
+												text="Já tenho conta"
+												press="signIn"
+												type="Transparent"/>
+																			
+										</f:fields>
+										</f:FormElement>
+												
+											</f:formElements>
+										</f:FormContainer>
+
+
+
+									</f:formContainers>
+								</f:Form>
+
+        
+      </VBox>
+</mvc:View>

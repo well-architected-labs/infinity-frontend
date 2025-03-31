@@ -1,0 +1,14 @@
+<mvc:View
+  controllerName="com.erp.myapp.controller.Logout"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+      <VBox
+        alignItems="Center"
+        justifyContent="Center"
+        height="100%">
+        <Title
+          text="Você foi desconectado!"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+      </VBox>
+</mvc:View>

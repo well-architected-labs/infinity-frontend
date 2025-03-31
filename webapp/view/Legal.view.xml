@@ -1,0 +1,95 @@
+<mvc:View
+  controllerName="com.erp.myapp.controller.Legal"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  height="100%">
+
+
+    <ScrollContainer
+      height="100%"
+      vertical="true"
+      horizontal="false">
+
+      <VBox
+        alignItems="Center"
+        justifyContent="Center"
+        height="1300px">
+        <Title
+          text="1. Termos de Uso"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="Ao acessar e utilizar a plataforma, o usuário declara ter lido, compreendido e aceitado integralmente os presentes Termos de Uso."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="2.Sobre a Plataforma"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="A plataforma tem como finalidade intermediar vagas de trabalho, conectando empresas de RH e profissionais em busca de oportunidades."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="3. Cadastro e Conta"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="Para utilizar as funcionalidades da plataforma, é necessário criar uma conta informando dados pessoais como nome, e-mail, CPF, entre outros. O usuário é responsável por manter a veracidade das informações fornecidas, bem como a confidencialidade de suas credenciais de acesso."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          width="500px"
+          text="4. Pagamentos"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="Alguns serviços oferecidos pela plataforma são pagos. Os valores, formas de pagamento e condições estão descritos nas páginas específicas da plataforma. O não pagamento poderá implicar na suspensão ou cancelamento dos serviços contratados."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="5. Privacidade e Proteção de Dados"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="Os dados pessoais fornecidos pelos usuários são tratados com confidencialidade, conforme a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD). Não realizamos o compartilhamento de dados com terceiros sem o consentimento do usuário."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="6. Responsabilidades do Usuário"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="O usuário compromete-se a utilizar a plataforma de forma ética e lícita, abstendo-se de práticas que possam violar a legislação vigente ou os direitos de terceiros. É proibido o uso da plataforma para fins ilegais, discriminatórios ou fraudulentos."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="7. Modificações nos Termos"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="A empresa se reserva o direito de modificar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor a partir da data de sua publicação. O uso continuado da plataforma após eventuais alterações implica na aceitação dos novos termos."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="8. Jurisdição"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="500px"
+          text="Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil. Fica eleito o foro da comarca da sede da empresa como competente para dirimir eventuais controvérsias."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+
+
+      </VBox>
+  </ScrollContainer>
+
+</mvc:View>

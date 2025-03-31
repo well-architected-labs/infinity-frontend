@@ -1,0 +1,121 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:blockcolor="sap.uxap.sample.ObjectPageFormLayout.controller.blocks"
+	xmlns:m="sap.m"
+	controllerName="com.erp.myapp.controller.VacanciesEdit"
+	height="100%">
+
+	<m:Page
+		showHeader="true"
+		enableScrolling="false"
+    title="Cadastro de vaga"
+		class="sapUiContentPadding"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+    >
+
+		<m:content>
+
+    <f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+      <f:content>
+        <m:Label text="Titulo"/>
+        <m:Input value="{/title}"/>
+      
+      <m:Label text="Ocupação"/>
+      <m:Select selectedKey="{/ocupation/id}" id="ocupation" items="{ocupations>/}">
+        <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+          <core:Item key="{ocupations>id}" text="{ocupations>name}" />
+      </m:Select>
+
+
+      <m:Label text="Status"/>
+      <m:Select selectedKey="{/status/id}" id="status" items="{status>/}">
+        <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+          <core:Item key="{status>id}" text="{status>description}" />
+      </m:Select>
+      
+      <m:Label text="Skills"/>
+        <m:MultiComboBox
+          id="multiComboBox"
+          selectedKeys="{/skills}"
+          items="{skills>/}">
+          <core:Item key="{skills>id}" text="{skills>name}" />
+        </m:MultiComboBox>
+
+
+
+
+      <m:Label text="Data de início"/>
+      <m:DatePicker value="{
+        path: '/dateInit',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mm:ss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+        }
+    }">
+          <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+      </m:DatePicker>
+
+
+      <m:Label text="Data de término"/>
+      <m:DatePicker value="{
+        path: '/dateEnd',
+        type: 'sap.ui.model.type.DateTime',
+        formatOptions: {
+            source: {
+                pattern: 'yyyy-MM-ddTHH:mm:ss'
+            },
+            pattern: 'dd/MM/yyyy HH:mm'
+            }
+        }">
+          <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+      </m:DatePicker>
+
+        <m:Label text="Descrição"/>
+        <m:TextArea value="{/description}" growing="true" growingMaxLines="7" width="100%">
+          <m:layoutData>
+            <f:ColumnElementData cellsSmall="12" cellsLarge="12"/>
+          </m:layoutData>
+        </m:TextArea>
+
+
+        <m:Button press="onSave" type="Success" text="Salvar vaga">
+					<m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+				</m:Button>
+      </f:content>
+    </f:SimpleForm>
+
+
+		</m:content>
+		<m:footer>
+			<m:OverflowToolbar id="otbFooter">
+        <m:ToolbarSpacer/>
+        <m:Button icon="sap-icon://arrow-left" type="Emphasized" text="Cancelar">
+					<m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+				</m:Button>
+        <m:Button press="onSave" type="Success" text="Salvar vaga">
+					<m:layoutData><m:OverflowToolbarLayoutData priority="NeverOverflow" /></m:layoutData>
+				</m:Button>
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+
+
+
+</mvc:View>
+
+

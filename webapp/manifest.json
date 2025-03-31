@@ -1,0 +1,325 @@
+{
+	"_version": "1.0.0",
+	"sap.app": {
+		"id": "com.erp.myapp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.erp.myapp.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.115.1",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.tnt": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"handleValidation": true,
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.erp.myapp.i18n.i18n"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.erp.myapp.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "main",
+					"target": "main",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "home",
+					"name": "home",
+					"target": "home",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "notFound",
+					"name": "notFound",
+					"target": "notFound",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "logout",
+					"name": "logout",
+					"target": "logout",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "vacancies",
+					"name": "vacancies",
+					"target": "vacancies",
+					"scopes": [
+						"administrator:company:vacancy:editor",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "vacancies/candidated",
+					"name": "VacanciesList",
+					"target": "VacanciesList",
+					"scopes": [
+						"administrator:person:vacancy:view",
+						"administrator:company:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "vacancies/edit/:id:",
+					"name": "VacanciesEdit",
+					"target": "VacanciesEdit",
+					"scopes": [
+						"administrator:company:vacancy:editor",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "vacancies/view/:id:",
+					"name": "VacanciesView",
+					"target": "VacanciesView",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:company:vacancy:read",
+						"administrator:vacancy:editor",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "candidatures",
+					"name": "Candidature",
+					"target": "Candidature",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:company:vacancy:editor",
+						"administrator:person:vacancy:view",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "candidature/view/:id:",
+					"name": "CandidatureView",
+					"target": "CandidatureView",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:company:vacancy:editor",
+						"administrator:person:vacancy:view",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "candidature/detail/:id:",
+					"name": "CandidatureDetail",
+					"target": "CandidatureDetail",
+					"scopes": [
+						"administrator:person:vacancy:read",
+						"administrator:company:vacancy:editor",
+						"administrator:person:vacancy:view",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				},
+				{
+					"pattern": "account",
+					"name": "Account",
+					"target": "Account",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "account/:id:",
+					"name": "AccountEdit",
+					"target": "AccountEdit",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "accounts",
+					"name": "Accounts",
+					"target": "Accounts",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "sign-up",
+					"name": "SignUp",
+					"target": "SignUp",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "sign-in",
+					"name": "SignIn",
+					"target": "SignIn",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "terms",
+					"name": "Legal",
+					"target": "Legal",
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "vacancies/detail/:id:",
+					"name": "VacanciesDetail",
+					"target": "VacanciesDetail",
+					"scopes": [
+						"administrator:company:vacancy:read",
+						"administrator:person:vacancy:view",
+						"administrator:vacancy:read",
+						"administrator:vacancy:editor"
+					]
+				}
+			],
+			"targets": {
+				"main": {
+					"viewId": "main",
+					"viewName": "Main",
+					"viewLevel": 1
+				},
+				"home": {
+					"viewId": "home",
+					"viewLevel": 2,
+					"viewName": "Home"
+				},
+				"logout": {
+					"viewId": "logout",
+					"viewLevel": 3,
+					"viewName": "Logout"
+				},
+				"vacancies": {
+					"viewId": "vacancies",
+					"viewLevel": 4,
+					"viewName": "Vacancies"
+				},
+				"Candidature": {
+					"viewId": "candidature",
+					"viewLevel": 5,
+					"viewName": "Candidature"
+				},
+				"CandidatureView": {
+					"viewId": "CandidatureView",
+					"viewLevel": 6,
+					"viewName": "CandidatureView"
+				},
+				"VacanciesEdit": {
+					"viewId": "VacanciesEdit",
+					"viewLevel": 7,
+					"viewName": "VacanciesEdit"
+				},
+				"VacanciesView": {
+					"viewId": "VacanciesView",
+					"viewLevel": 8,
+					"viewName": "VacanciesView"
+				},
+				"VacanciesDetail": {
+					"viewId": "VacanciesDetail",
+					"viewLevel": 9,
+					"viewName": "VacanciesDetail"
+				},
+				"VacanciesList": {
+					"viewId": "VacanciesList",
+					"viewLevel": 10,
+					"viewName": "VacanciesList"
+				},
+				"CandidatureDetail": {
+					"viewId": "CandidatureDetail",
+					"viewLevel": 11,
+					"viewName": "CandidatureDetail"
+				},
+				"Account": {
+					"viewId": "Account",
+					"viewLevel": 12,
+					"viewName": "Account"
+				},
+				"Accounts": {
+					"viewId": "Accounts",
+					"viewLevel": 13,
+					"viewName": "Accounts"
+				},
+				"AccountEdit": {
+					"viewId": "AccountEdit",
+					"viewLevel": 14,
+					"viewName": "AccountEdit"
+				},
+				"SignUp": {
+					"viewId": "SignUp",
+					"viewLevel": 15,
+					"viewName": "SignUp"
+				},
+				"Legal": {
+					"viewId": "Legal",
+					"viewLevel": 18,
+					"viewName": "Legal"
+				},
+				"SignIn": {
+					"viewId": "SignIn",
+					"viewLevel": 15,
+					"viewName": "SignIn"
+				},
+				"notFound": {
+					"viewId": "notFound",
+					"viewName": "NotFound",
+					"viewLevel": 99
+				}
+			}
+		}
+	}
+}
