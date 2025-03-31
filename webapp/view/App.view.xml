@@ -26,12 +26,19 @@
 			<ToolbarSpacer />
 
 			<tnt:ToolHeaderUtilitySeparator/>
+
+
+			<Text text="Dark Mode" />
+			<Switch change="changeTheme" state="false">
+			<layoutData>
+				<FlexItemData growFactor="1" />
+			</layoutData>
+			</Switch>
+
 			<OverflowToolbarButton icon="sap-icon://log" press="logout" type="Transparent" text="" tooltip=""/>
-			<Avatar src="https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg" displaySize="XS"  tooltip="Profile">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Avatar>
+
+
+
 		</tnt:ToolHeader>
 
 
@@ -49,13 +56,13 @@
   
 		<tnt:NavigationList items="{/menu}">
 		<tnt:NavigationListItem items="{path: 'items', templateShareable: false}" text="{text}" icon="{icon}" selectable="{selectable}">
-			<tnt:NavigationListItem text="{text}" href="{href}" />
+			<tnt:NavigationListItem text="{text}" target="{target}" />
 		</tnt:NavigationListItem>
 		</tnt:NavigationList>
 
 			<tnt:fixedItem>
 				<tnt:NavigationList>
-					<tnt:NavigationListItem selectable="false" href="#" target="_blank" text="Sobre a versão" icon="sap-icon://message-information" />
+					<tnt:NavigationListItem  target="version"  text="Sobre a versão" icon="sap-icon://message-information" />
 				</tnt:NavigationList>
 			</tnt:fixedItem>
 

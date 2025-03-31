@@ -8,7 +8,7 @@ export default class VacanciesList extends BaseController {
 
 	async onInit(): Promise<void> {
 		this.getView().setModel(new JSONModel([]), "vacancies")
-		await this.getRouter().getRoute("VacanciesList")
+		await this.getRouter().getRoute("candidated")
 			.attachPatternMatched(async (oEvent: any) => {
 				await this.onLoadVancies();
 				await this.onCreateFilters();

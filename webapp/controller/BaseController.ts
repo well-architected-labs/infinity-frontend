@@ -7,12 +7,13 @@ import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import Router from "sap/ui/core/routing/Router";
 import History from "sap/ui/core/routing/History";
 import { Role } from "../model/entities/User.entity";
+import JSONModel from "sap/ui/model/json/JSONModel";
 
 /**
  * @namespace com.erp.myapp.controller
  */
 export default abstract class BaseController extends Controller {
-	
+
 	/**
 	 * Convenience method for accessing the component of the controller's view.
 	 * @returns The component of the controller's view
@@ -86,16 +87,22 @@ export default abstract class BaseController extends Controller {
 	public logout(): void {
 
 		localStorage.removeItem("token");
-		localStorage.removeItem("tenant_id");
+		localStorage.removeItem("user_agent")
 
 		const model = this.getOwnerComponent().getModel("session") as any;
-		console.log(model)
+
 		if (!model) {
 			const mainAppView = this.getOwnerComponent().getRootControl() as any;
 			const sideNav = mainAppView.byId("sideNavigation") as any;
 			sideNav.setVisible(false);
 		}
 
-		this.getRouter().navTo("sign-in", {}, undefined, true);
+
+		this.getView().setModel(new JSONModel({
+			user: null,
+			active: false
+		}), 'session');
+
+		this.getRouter().navTo("SignIn", {}, undefined, true);
 	}
 }

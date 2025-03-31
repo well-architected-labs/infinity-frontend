@@ -44,11 +44,11 @@
 											<f:formElements>
 											<f:FormElement label="Pessoa jurídica">
 													<f:fields>
-																<Switch change="checkType" state="false" customTextOn="SIM" customTextOff="NÃO">
-                              <layoutData>
-                                <FlexItemData growFactor="1" />
-                              </layoutData>
-                            </Switch>
+												<Switch change="checkType" state="false" customTextOn="SIM" customTextOff="NÃO">
+														<layoutData>
+															<FlexItemData growFactor="1" />
+														</layoutData>
+														</Switch>
 													</f:fields>
 												</f:FormElement>
 
@@ -96,11 +96,11 @@
 											<f:formElements>
                       	<f:FormElement>
 													<f:fields>
-                        	  <CheckBox text="Declaro que li e concordo com os" selected="false" partiallySelected="true">
-                            <layoutData>
-																<f:ColumnElementData cellsSmall="12" cellsLarge="3" />
-															</layoutData>
-														</CheckBox>
+                        	<CheckBox text="Declaro que li e concordo com os" selected="false" partiallySelected="true">
+                            	<layoutData>
+									<f:ColumnElementData cellsSmall="12" cellsLarge="3" />
+								</layoutData>
+							</CheckBox>
                               
                               <Link
                               text=" Termos de Uso."

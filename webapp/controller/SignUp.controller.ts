@@ -62,17 +62,13 @@ export default class SignUp extends BaseController {
 
 
 		button.setBusy(true);
-		
+
 		await AuthService.signUp({
 			...data
 		}).then((response: User) => {
 
 
 			setTimeout(async () => {
-
-				localStorage.setItem("tenant_id", response.id);
-				localStorage.setItem("alias", JSON.stringify(response.role.alias));
-
 				this.getOwnerComponent().setModel(new JSONModel({
 					id: response.role.id,
 					name: response.role.name,

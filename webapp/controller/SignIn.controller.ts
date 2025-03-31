@@ -8,6 +8,8 @@ import MessageToast from "sap/m/MessageToast";
 import Component from "../Component";
 import AuthService from '../services/AuthService.service'
 import { Role, User } from "../model/entities/User.entity";
+import ThemeManager from "sap/ui/core/Theming";
+
 export default class SignIn extends BaseController {
 
 	async onInit(): Promise<void> {
@@ -37,8 +39,8 @@ export default class SignIn extends BaseController {
 	async onCreateForm(): Promise<void> {
 
 		this.getView().setModel(new JSONModel({
-			email: '',
-			password: '',
+			email: 'administrator@4erp.io',
+			password: '#pass@2025',
 			person: {
 				type: '1',
 			}
@@ -67,16 +69,13 @@ export default class SignIn extends BaseController {
 
 			setTimeout(async () => {
 
-				localStorage.setItem("tenant_id", response.id);
-				localStorage.setItem("alias", JSON.stringify(response.role.alias));
-
 				this.getOwnerComponent().setModel(new JSONModel({
-					id: response.role.id,
-					name: response.role.name,
-					alias: response.role.alias,
-					scopes: response.role.scopes,
+					user: response,
 					active: true
 				}), 'session');
+				
+				localStorage.setItem("theme", 'sap_horizon');
+
 
 				const mainAppView = this.getOwnerComponent().getRootControl() as any;
 				const sideNav = mainAppView.byId("sideNavigation") as any;

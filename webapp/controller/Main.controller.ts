@@ -36,7 +36,7 @@ export default class Main extends BaseController {
 		}), 'user');
 	}
 
-	async signIn(oEvent:any): Promise<void> {
+	async signIn(oEvent: any): Promise<void> {
 
 		const button = oEvent.getSource();
 
@@ -50,38 +50,28 @@ export default class Main extends BaseController {
 		console.log(data)
 
 		button.setBusy(true);
-		
+
 		await AuthService.signIn({
 			...data
 		}).then((response: User) => {
-
-
-
-			setTimeout(async ()=> {
+			setTimeout(async () => {
 				button.setBusy(false);
-			
-				localStorage.setItem("tenant_id", response.id);
-				localStorage.setItem("alias", JSON.stringify(response.role.alias));
+				this.getOwnerComponent().setModel(new JSONModel({
+					id: response.role.id,
+					name: response.role.name,
+					alias: response.role.alias,
+					scopes: response.role.scopes,
+					active: true
+				}), 'session');
 
-			this.getOwnerComponent().setModel(new JSONModel({
-				id: response.role.id,
-				name: response.role.name,
-				alias: response.role.alias,
-				scopes: response.role.scopes,
-				active: true
-			}), 'session');
-
-			const mainAppView = this.getOwnerComponent().getRootControl() as any;
-			const sideNav = mainAppView.byId("sideNavigation") as any;
-			sideNav.setVisible(!sideNav.getExpanded());
-
-			(this.getOwnerComponent() as Component).getRouter().navTo("home");
-
-			MessageToast.show("Logado com sucesso!");
-			console.log('entrou aqui!');
-		}, 1000)
+				const mainAppView = this.getOwnerComponent().getRootControl() as any;
+				const sideNav = mainAppView.byId("sideNavigation") as any;
+				sideNav.setVisible(!sideNav.getExpanded());
+				(this.getOwnerComponent() as Component).getRouter().navTo("home");
+				MessageToast.show("Logado com sucesso!");
+			}, 1000)
 		}).catch((error) => {
-			setTimeout(async ()=> {
+			setTimeout(async () => {
 				console.log('Falha ao fazer login!');
 				button.setBusy(false);
 			}, 1000)

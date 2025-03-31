@@ -5,37 +5,41 @@ import Device from "sap/ui/Device";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import { Role, User } from "../model/entities/User.entity";
 import AuthService from "../services/AuthService.service";
+import ThemeManager from "sap/ui/core/Theming";
 
 export default class App extends BaseController {
 
 	public async onInit(): Promise<void> {
+
+
+		const theme = localStorage.getItem('theme') as string;
+
+		if (theme)
+			this.setTheme('sap_horizon')
+		else
+			this.setTheme(theme);
+
 		this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		Device.media.attachHandler(this._handleMediaChange, this);
 		this._handleMediaChange();
 
 		await this.getRouter().attachRouteMatched(async (oEvent: any) => {
-				await AuthService.current()
-					.then(async (response) => {
-						this.getView().setModel(new JSONModel({
-							id: response.role.id,
-							name: response.role.name,
-							alias: response.role.alias,
-							scopes: response.role.scopes,
-							active: true
-						}), 'session');
+			await AuthService.current()
+				.then(async (response) => {
+					this.getView().setModel(new JSONModel({
+						user: response,
+						active: true
+					}), 'session');
 
-						await this.menu(response);
+					await this.menu(response);
 
-					}).catch(async (error) => {
-						this.getView().setModel(new JSONModel({
-							id: '',
-							name: '',
-							alias: '',
-							scopes: [],
-							active: false
-						}), 'session');
-					})
-			}, this);
+				}).catch(async (error) => {
+					this.getView().setModel(new JSONModel({
+						user: null,
+						active: false
+					}), 'session');
+				})
+		}, this);
 
 		const model = this.getView().getModel("session") as any;
 
@@ -53,6 +57,22 @@ export default class App extends BaseController {
 
 	}
 
+	async changeTheme(oEvent: any): Promise<void> {
+		if (!oEvent.getSource().getState()) {
+			localStorage.setItem("theme", 'sap_horizon');
+			this.setTheme('sap_horizon');
+		}
+		else {
+			localStorage.setItem("theme", 'sap_horizon_dark');
+			this.setTheme('sap_horizon_dark');
+		}
+
+	}
+
+	private setTheme(theme: string) {
+		ThemeManager.setTheme(theme);
+	}
+
 	async menu(response: User): Promise<void> {
 
 		if (response.role.alias.includes('administrator:system:*'))
@@ -63,7 +83,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://home",
 						selectable: false,
 						items: [
-							{ text: "Home", href: "index.html#/home" },
+							{ text: "Home", target: "home" },
 						]
 					},
 					{
@@ -71,7 +91,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://suitcase",
 						selectable: false,
 						items: [
-							{ text: "Vagas", "href": "index.html#/vacancies" },
+							{ text: "Vagas", "target": "vacancies" },
 						]
 					},
 					{
@@ -79,7 +99,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://action-settings",
 						selectable: false,
 						items: [
-							{ text: "Minha conta", "href": "index.html#/account" },
+							{ text: "Minha conta", "target": "account" },
 						]
 					},
 					{
@@ -87,7 +107,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://settings",
 						selectable: false,
 						items: [
-							{ text: "Contas", "href": "index.html#/accounts" },
+							{ text: "Contas", "target": "accounts" },
 						]
 					}
 				]
@@ -101,7 +121,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://home",
 						selectable: false,
 						items: [
-							{ text: "Home", href: "index.html#/home" },
+							{ text: "Home", target: "home" },
 						]
 					},
 					{
@@ -109,8 +129,8 @@ export default class App extends BaseController {
 						icon: "sap-icon://suitcase",
 						selectable: false,
 						items: [
-							{ text: "Vagas", href: "index.html#/vacancies" },
-							{ text: "Candidaturas", href: "index.html#/candidatures" },
+							{ text: "Vagas", target: "vacancies" },
+							{ text: "Candidaturas", target: "vacancies" },
 						]
 					},
 					{
@@ -118,7 +138,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://action-settings",
 						selectable: false,
 						items: [
-							{ text: "Minha conta", "href": "index.html#/account" },
+							{ text: "Minha conta", "target": "account" },
 						]
 					}
 				]
@@ -132,7 +152,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://home",
 						selectable: false,
 						items: [
-							{ text: "Home", "href": "index.html#/home" },
+							{ text: "Home", "target": "home" },
 						]
 					},
 					{
@@ -140,8 +160,8 @@ export default class App extends BaseController {
 						icon: "sap-icon://suitcase",
 						selectable: false,
 						items: [
-							{ text: "Vagas", href: "index.html#/home" },
-							{ text: "Candidaturas", href: "index.html#/vacancies/candidated" },
+							{ text: "Vagas", target: "home" },
+							{ text: "Candidaturas", target: "candidated" },
 						]
 					},
 					{
@@ -149,7 +169,7 @@ export default class App extends BaseController {
 						icon: "sap-icon://action-settings",
 						selectable: false,
 						items: [
-							{ text: "Minha conta", "href": "index.html#/account" },
+							{ text: "Minha conta", "target": "account" },
 						]
 					}
 				]
@@ -230,7 +250,10 @@ export default class App extends BaseController {
 	onItemSelect(oEvent: any): void {
 		const oItem = oEvent.getParameter("item");
 		const sText = oItem.getText();
+		const target = oItem.getTarget();
 		MessageToast.show(`Item selected: ${sText}`);
+		console.log(target);
+		this.navTo(target, {});
 	}
 
 
@@ -246,9 +269,7 @@ export default class App extends BaseController {
 
 		(this.byId("sideNavigation") as any).setVisible(false);
 
-		localStorage.removeItem('tenant_id');
 		localStorage.removeItem('token');
-		localStorage.removeItem('role')
 		MessageToast.show("Logout successful!");
 
 		this.navTo('SignIn', {});

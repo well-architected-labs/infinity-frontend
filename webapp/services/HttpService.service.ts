@@ -1,5 +1,5 @@
 export class HttpService {
-    private static _BASEURL =  "https://api.infinityteam.cloud" 
+    private static _BASEURL =  "https://api.infinityteam.cloud" //"http://localhost:5157" 
     static async request<T>(
         method: "GET" | "POST" | "PUT" | "DELETE",
         url: string,
@@ -37,7 +37,6 @@ export class HttpService {
             if (!response.ok) {
                 if (response.status === 401) {
                     localStorage.removeItem("token");
-                    localStorage.removeItem("tenant_id");
                 }
 
                 const errorText = await response.text();

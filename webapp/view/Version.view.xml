@@ -1,0 +1,68 @@
+<mvc:View
+  controllerName="com.erp.myapp.controller.Version"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Page
+    title="Home"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+    <content>
+
+
+    <ScrollContainer
+      height="100%"
+      vertical="true"
+      horizontal="false">
+
+      <VBox
+        alignItems="Center"
+        justifyContent="Center"
+        height="600px">
+        <Title
+          text="Versão: {/version}"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="[hotfix]: Erro de navegação do menu"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="300px"
+          text="Foi identificado que ao clicar no menu estava sendo carregado todo o conteúdo novamente. Fazendo com que ao invés de carregar a rota estivesse a mesma carregando todo o conteúdo."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+
+        <Title
+          text="[feature]: Adicionado menu para Temas"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="300px"
+          text="Foi adicionado menu para alterar entre tema dark e ligth"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="[hotfix]: Problemas de binding no login"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="300px"
+          text=" Corrigido problemas de binding no login fazendo com que campos sumissem valores na alteração de PJ para pessoa física."
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Title
+          text="[fix]: Problemas de Scopes na Autenticação"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+        <Text
+          width="300px"
+          text="Corrigido problemas de acesso indevido por meio do url não respeitando [scopes] do token"
+          wrapping="true"
+          class="sapUiMediumMarginBottom"/>
+
+
+      </VBox>
+  </ScrollContainer>
+    </content>
+  </Page>
+</mvc:View>

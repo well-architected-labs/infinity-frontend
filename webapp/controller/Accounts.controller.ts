@@ -8,7 +8,7 @@ export default class Accounts extends BaseController {
 
 	async onInit(): Promise<void> {
 		this.getView().setModel(new JSONModel([]), "users")
-		this.getRouter().getRoute("Accounts")
+		this.getRouter().getRoute("accounts")
 			.attachPatternMatched(async (oEvent: any) => {
 				await this.onCreateFilters();
 				await this.onLoadAccounts(`/v1/users?skip=0&take=20`);

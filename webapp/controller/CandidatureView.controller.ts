@@ -3,10 +3,8 @@ import BaseController from "./BaseController";
 import MessageToast from "sap/m/MessageToast";
 import { HttpService } from "../services/HttpService.service";
 import { Generic } from "../model/entities/Generic.dto";
-import formatter from "../model/formatter";
 
 export default class CandidatureView extends BaseController {
-
 
 	async onInit(): Promise<void> {
 		await this.onLoadPage();
@@ -57,7 +55,6 @@ export default class CandidatureView extends BaseController {
 				}));
 			});
 	}
-
 
 	create(): void {
 		console.log("here!")

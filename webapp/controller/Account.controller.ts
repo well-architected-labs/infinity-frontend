@@ -10,7 +10,7 @@ export default class Account extends BaseController {
 
 
 	async onInit(): Promise<void> {
-		await this.getRouter().getRoute("Account")
+		await this.getRouter().getRoute("account")
 			.attachPatternMatched(async (oEvent: any) => {
 				await this.onLoadPage();
 			}, this);
@@ -50,50 +50,7 @@ export default class Account extends BaseController {
 
 	async onLoadCurrent(): Promise<void> {
 
-
-		this.getView().setModel(new JSONModel({
-			"email": "gabriel@4erp.io",
-			"password": "",
-			"person": {
-				"firstName": "Gabriel",
-				"lastName": "",
-				"legalName": "",
-				"fantasyName": "",
-				"taxId": "",
-				"bio": {
-					"about": "",
-					"resume": "",
-					"linkedin": "",
-					"webSite": "",
-					"experiences": [
-						{
-							"name": "",
-							"description": "",
-							"dateInit": "2022-01-02T00:00:00",
-							"dateEnd": "2022-01-02T00:00:00",
-							"current": false
-						}
-					],
-					"educations": [
-						{
-							"name": "",
-							"description": "",
-							"dateInit": "2022-01-02T00:00:00",
-							"dateEnd": "2024-12-28T00:00:00"
-						}
-					]
-				},
-				"phone": {
-					"id": "",
-					"ddi": "",
-					"ddd": "",
-					"number": ""
-				},
-				"skills": [
-
-				]
-			}
-		}));
+		this.getView().setModel(new JSONModel());
 
 		await HttpService.get<User>(`/v1/users/current`)
 			.then((response: User) => {

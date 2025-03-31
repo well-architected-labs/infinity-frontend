@@ -1,5 +1,5 @@
 {
-	"_version": "1.0.0",
+	"_version": "1.0.1",
 	"sap.app": {
 		"id": "com.erp.myapp",
 		"type": "application",
@@ -62,6 +62,7 @@
 					"pattern": "",
 					"name": "main",
 					"target": "main",
+					"authorization": false,
 					"scopes": [
 						"*"
 					]
@@ -70,15 +71,17 @@
 					"pattern": "home",
 					"name": "home",
 					"target": "home",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:vacancy:editor"
 					]
 				},
 				{
-					"pattern": "notFound",
+					"pattern": "404",
 					"name": "notFound",
 					"target": "notFound",
+					"authorization": false,
 					"scopes": [
 						"*"
 					]
@@ -87,6 +90,7 @@
 					"pattern": "logout",
 					"name": "logout",
 					"target": "logout",
+					"authorization": false,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:vacancy:editor"
@@ -96,6 +100,7 @@
 					"pattern": "vacancies",
 					"name": "vacancies",
 					"target": "vacancies",
+					"authorization": true,
 					"scopes": [
 						"administrator:company:vacancy:editor",
 						"administrator:vacancy:read",
@@ -103,9 +108,10 @@
 					]
 				},
 				{
-					"pattern": "vacancies/candidated",
-					"name": "VacanciesList",
+					"pattern": "candidated",
+					"name": "candidated",
 					"target": "VacanciesList",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:view",
 						"administrator:company:vacancy:editor"
@@ -115,6 +121,7 @@
 					"pattern": "vacancies/edit/:id:",
 					"name": "VacanciesEdit",
 					"target": "VacanciesEdit",
+					"authorization": true,
 					"scopes": [
 						"administrator:company:vacancy:editor",
 						"administrator:vacancy:editor"
@@ -124,6 +131,7 @@
 					"pattern": "vacancies/view/:id:",
 					"name": "VacanciesView",
 					"target": "VacanciesView",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:company:vacancy:read",
@@ -136,6 +144,7 @@
 					"pattern": "candidatures",
 					"name": "Candidature",
 					"target": "Candidature",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:company:vacancy:editor",
@@ -148,6 +157,7 @@
 					"pattern": "candidature/view/:id:",
 					"name": "CandidatureView",
 					"target": "CandidatureView",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:company:vacancy:editor",
@@ -160,6 +170,7 @@
 					"pattern": "candidature/detail/:id:",
 					"name": "CandidatureDetail",
 					"target": "CandidatureDetail",
+					"authorization": true,
 					"scopes": [
 						"administrator:person:vacancy:read",
 						"administrator:company:vacancy:editor",
@@ -170,24 +181,28 @@
 				},
 				{
 					"pattern": "account",
-					"name": "Account",
+					"name": "account",
 					"target": "Account",
+					"authorization": true,
 					"scopes": [
-						"*"
+						"administrator:user:editor",
+						"administrator:person:vacancy:view"
 					]
 				},
 				{
 					"pattern": "account/:id:",
 					"name": "AccountEdit",
 					"target": "AccountEdit",
+					"authorization": true,
 					"scopes": [
 						"*"
 					]
 				},
 				{
 					"pattern": "accounts",
-					"name": "Accounts",
+					"name": "accounts",
 					"target": "Accounts",
+					"authorization": false,
 					"scopes": [
 						"*"
 					]
@@ -196,6 +211,7 @@
 					"pattern": "sign-up",
 					"name": "SignUp",
 					"target": "SignUp",
+					"authorization": false,
 					"scopes": [
 						"*"
 					]
@@ -204,6 +220,7 @@
 					"pattern": "sign-in",
 					"name": "SignIn",
 					"target": "SignIn",
+					"authorization": true,
 					"scopes": [
 						"*"
 					]
@@ -212,6 +229,16 @@
 					"pattern": "terms",
 					"name": "Legal",
 					"target": "Legal",
+					"authorization": false,
+					"scopes": [
+						"*"
+					]
+				},
+				{
+					"pattern": "version",
+					"name": "version",
+					"target": "Version",
+					"authorization": false,
 					"scopes": [
 						"*"
 					]
@@ -220,6 +247,7 @@
 					"pattern": "vacancies/detail/:id:",
 					"name": "VacanciesDetail",
 					"target": "VacanciesDetail",
+					"authorization": true,
 					"scopes": [
 						"administrator:company:vacancy:read",
 						"administrator:person:vacancy:view",
@@ -304,15 +332,20 @@
 					"viewLevel": 15,
 					"viewName": "SignUp"
 				},
-				"Legal": {
-					"viewId": "Legal",
-					"viewLevel": 18,
-					"viewName": "Legal"
-				},
 				"SignIn": {
 					"viewId": "SignIn",
-					"viewLevel": 15,
+					"viewLevel": 16,
 					"viewName": "SignIn"
+				},
+				"Legal": {
+					"viewId": "Legal",
+					"viewLevel": 17,
+					"viewName": "Legal"
+				},
+				"Version": {
+					"viewId": "Version",
+					"viewName": "Version",
+					"viewLevel": 18
 				},
 				"notFound": {
 					"viewId": "notFound",
