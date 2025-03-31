@@ -32,6 +32,7 @@ export default class SignUp extends BaseController {
 				type: oEvent.getSource().getState() ? '0' : '1',
 			}
 		}), 'user');
+		console.log((this.getView().getModel('user') as JSONModel).getData());
 	}
 
 	async onCreateForm(): Promise<void> {
@@ -40,7 +41,7 @@ export default class SignUp extends BaseController {
 			email: '',
 			password: '',
 			person: {
-				type: '1',
+				type: '0',
 			}
 		}), 'user');
 

@@ -1,5 +1,5 @@
 export class HttpService {
-    private static _BASEURL =  "https://api.infinityteam.cloud" //"http://localhost:5157" 
+    private static _BASEURL =  "https://api.infinityteam.cloud" 
     static async request<T>(
         method: "GET" | "POST" | "PUT" | "DELETE",
         url: string,

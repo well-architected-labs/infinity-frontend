@@ -39,7 +39,7 @@
 													</f:fields>
 												</f:FormElement>
 											</f:formElements>
-                    </f:FormContainer>
+                    					</f:FormContainer>
 										<f:FormContainer title="Informações pessoais">
 											<f:formElements>
 											<f:FormElement label="Pessoa jurídica">
@@ -66,7 +66,7 @@
 
 												<f:FormElement visible="{= ${user>/person/type} === '0' }" label="Razão Social">
 													<f:fields>
-														<Input value="{/person/legalName}"/>
+														<Input value="{user>/person/legalName}"/>
 													</f:fields>
 												</f:FormElement>
 												<f:FormElement visible="{= ${user>/person/type} === '0' }" label="Nome Fantasia">

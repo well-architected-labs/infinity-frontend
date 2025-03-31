@@ -185,8 +185,9 @@
 					"target": "Account",
 					"authorization": true,
 					"scopes": [
-						"administrator:user:editor",
-						"administrator:person:vacancy:view"
+						"administrator:account:edit",
+						"administrator:company:account:edit",
+						"administrator:person:account:edit"
 					]
 				},
 				{
